@@ -30,6 +30,10 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/custom.css'%}" />
 
+    <link rel="stylesheet" href="{% static 'css/login.css'%}" />
+
+    <link rel="stylesheet" href="{% static 'css/register.css'%}" />
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -54,13 +58,13 @@
             <div class="container">
                 <div class="row">
                     <div class="logo_section">
-                        <a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.png'%}" alt="image"></a>
+                        <a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.jpg'%}" style="height:90px;width:275px;" alt="image"></a>
                     </div>
                     <div class="site_information">
                         <ul>
                             <li><a href="mailto:exchang@gmail.com"><img src="{% static 'images/mail_icon.png'%}" alt="#" />exchang@gmail.com</a></li>
                             <li><a href="tel:exchang@gmail.com"><img src="{% static 'images/phone_icon.png'%}" alt="#" />+7123569847</a></li>
-                            <li><a class="join_bt" href="#">Join us</a></li>
+                            <li><a class="join_bt" href="/login/" >Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -82,9 +86,7 @@
                     <ul class="navbar-nav">
                         <li><a class="nav-link active" href="/">Home</a></li>
                         <li><a class="nav-link" href="/about/">About</a></li>
-                        <li><a class="nav-link" href="exchange.html">Exchange</a></li>
                         <li><a class="nav-link" href="/services/">Services</a></li>
-                        <li><a class="nav-link" href="new.html">News</a></li>
                         <li><a class="nav-link" href="/contact/">Contact</a></li>
                     </ul>
                 </div>
@@ -114,7 +116,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
-                                <img class="img-responsive" src="{% static 'images/footer_logo.png'%}" alt="#" />
+                                <img class="img-responsive" src="{% static 'images/logo.jpg'%}" alt="#" />
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
