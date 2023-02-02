@@ -1,0 +1,58 @@
+{% extends  "base.html" %}
+{% block contentBody %}
+{% load static %}
+
+    <!-- Start Banner -->
+    <div class="section inner_page_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="banner_title">
+                        <h3>Forgot Password</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+
+    <!-- section -->
+    <div class="section layout_padding about_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="full paddding_left_15">
+                        <div class="heading_main text_align_left">
+                           <h2>Reset Password</h2>
+                        </div>
+                    </div>
+                    <div class="full paddding_left_15">
+<!--                        <div class="container" style="margin: 50px; text-align: center;">-->
+<!--                            <div class="center">-->
+                                <form>
+                                    <div class="text" style="text-align: left;">
+                                    <label><b>Email</b></label>
+                                    </div>
+                                    <input class="input3" type= "email" placeholder= "Enter your Email Address">
+                                    <br><br>
+                                    <button type= "submit" >Submit</button>
+                                </form>
+                                <span class="psw" > <a href="/login/" style="text-decoration: none;">Login</a>
+                                </span>
+<!--                            </div>-->
+<!--                        </div>-->
+                </div>
+                </div>
+                    <div class="col-md-6">
+                        <div class="full text_align_right_img">
+                            <img src="{% static 'images/forgot.jpg'%}" style="height:400px;width:400px;padding-top:20px;"alt="#" />
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- end section -->
+
+
+
+{% endblock %}
