@@ -1,0 +1,56 @@
+{% extends  "base.html" %}
+{% block contentBody %}
+{% load static %}
+
+    <!-- Start Banner -->
+    <div class="section inner_page_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="banner_title">
+                        <h3>Login</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+
+    <!-- section -->
+    <div class="section layout_padding about_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="full paddding_left_15">
+                        <div class="heading_main text_align_left">
+                           <h2>User login</h2>
+                        </div>
+                    </div>
+                    <div class="full paddding_left_15">
+                        <form >
+                                <label><b>Username</b></label>
+                                <input class="input1" type="text" placeholder="Enter Username" name="uname" required><br>
+                                <label><b>Password</b></label>
+                                <input class="input2" type="password" placeholder="Enter Password" name="psw" required>
+                                <button type="submit" >Login</button><br>
+                                <input  type="checkbox" checked="checked"> Remember me
+                                <span class="psw" >
+                                    <a  style="text-decoration: none;"><a href="/forgot/">Forgot password?</a></a>
+                                    <br><a style="text-decoration: none;">New user? <a href="/register/"> Register</a></a>
+                                </span>
+                        </form>
+                </div>
+                </div>
+                    <div class="col-md-6">
+                        <div class="full text_align_right_img">
+                            <img src="{% static 'images/login image.jpg'%}" style="height:400px;width:400px;padding-top:20px;"alt="#" />
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- end section -->
+
+
+
+{% endblock %}

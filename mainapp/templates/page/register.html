@@ -1,0 +1,59 @@
+{% extends  "base.html" %}
+{% block contentBody %}
+{% load static %}
+
+    <!-- Start Banner -->
+    <div class="section inner_page_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="banner_title">
+                        <h3>Register</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+
+    <!-- section -->
+    <div class="section layout_padding about_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="full paddding_left_15">
+                        <div class="heading_main text_align_left">
+                           <h2>User Registration</h2>
+                        </div>
+                    </div>
+                    <div class="full paddding_left_15">
+                       <form>
+                            <label><b>Full name</b></label>
+                            <input class="input4" type="text" placeholder="Enter your name" name="uname" required><br>
+                            <label><b>Email</b></label>
+                            <input class="input6" type="email" placeholder="Enter your Email address" name="email" required><br>
+                            <label><b>Mobile number</b></label>
+                            <input class="input7" type="number" placeholder="Enter your Mobile number" name="number" required><br>
+                            <label><b>Password</b></label>
+                            <input class="input5" type="password" placeholder="Enter Password" name="psw" required><br>
+                            <label><b>Confirm Password</b></label>
+                            <input class="input5" type="password" placeholder="Re-enter Password" name="re-enter psw" required><br>
+                            <button type="submit" value="Register">Register</button><br>
+                            <input type="checkbox" checked="checked"> Remember me
+                            <span class="psw" > <a style="text-decoration: none;">Already have an account?<a href="/login/"> Login</a></a>
+                            </span>
+                        </form>
+                </div>
+                </div>
+                    <div class="col-md-6">
+                        <div class="full text_align_right_img">
+                            <img src="{% static 'images/register image.jpg'%}" style="height:550px;width:500px;padding-top:80px;"alt="#" />
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- end section -->
+
+
+{% endblock %}
