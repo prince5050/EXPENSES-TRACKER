@@ -1948,7 +1948,7 @@ p {
 
 .layout_padding {
 	padding-top: 75px;
-	padding-bottom: 75px;
+	padding-bottom:75px;
 }
 
 .heading_main h2 {
@@ -2316,7 +2316,7 @@ ul.bottom_menu li {
 }
 
 .contact_form {
-    background: url('../images/contact_bg.png');
+    background: url('../images/contact_bg.jpg');
     background-size: cover;
     background-position: center center;
     min-height: 650px;
@@ -2337,7 +2337,6 @@ ul.bottom_menu li {
 
 .field textarea {
     width: 100%;
-    background: #0e0606;
     min-height: 120px;
     border: none;
     margin: 15px 0;
@@ -2364,4 +2363,7 @@ ul.bottom_menu li {
     color: #fff;
     background: #050000;
 }
+
+
+
 
