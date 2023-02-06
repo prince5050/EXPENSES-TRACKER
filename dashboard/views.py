@@ -10,3 +10,16 @@ def buy_ico(request):
 
 def wallet(request):
     return render(request, 'dashboard_page/wallet.html')
+
+def transactions(request):
+    return render(request, 'dashboard_page/transactions.html')
+
+
+def faq(request):
+    return render(request, 'dashboard_page/faq.html')
+
+def account_profile(request):
+    return render(request, 'dashboard_page/account-profile.html')
+
+def account_login_history(request):
+    return render(request, 'dashboard_page/account-login-history.html')
