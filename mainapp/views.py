@@ -27,3 +27,7 @@ def register(request):
 
 def forgot(request):
     return render(request, 'page/forgot.html')
+
+
+
+
