@@ -22,7 +22,14 @@ def exchange(request):
     return render(request, 'page/exchange.html')
 
 def login(request):
-    return render(request, 'page/login.html')
+    if request.method == 'GET':
+        Next = request.GET.get('next')
+        cache.set('next', Next)
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        return render(request, 'page/login.html')
 
 def register(request):
     if request.method == 'POST':
