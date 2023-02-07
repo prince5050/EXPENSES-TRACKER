@@ -27,7 +27,8 @@
                         </div>
                     </div>
                     <div class="full paddding_left_15">
-                        <form >
+                        <form action="/login/" method="GET">
+                            {% csrf_token %}
                                 <label><b>Username</b></label>
                                 <input class="input1" type="text" placeholder="Enter Username" name="uname" required><br>
                                 <label><b>Password</b></label>
