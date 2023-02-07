@@ -27,17 +27,20 @@
                         </div>
                     </div>
                     <div class="full paddding_left_15">
-                       <form>
-                            <label><b>Full name</b></label>
-                            <input class="input4" type="text" placeholder="Enter your name" name="uname" required><br>
+                       <form action="/register/" method="POST">
+                           {% csrf_token %}
+                            <label><b>First name</b></label>
+                            <input class="input4" type="text" placeholder="Enter your name" name="first_name" required><br>
+                           <label><b>last name</b></label>
+                            <input class="input4" type="text" placeholder="Enter your name" name="last_name" required><br>
                             <label><b>Email</b></label>
                             <input class="input6" type="email" placeholder="Enter your Email address" name="email" required><br>
                             <label><b>Mobile number</b></label>
                             <input class="input7" type="number" placeholder="Enter your Mobile number" name="number" required><br>
                             <label><b>Password</b></label>
-                            <input class="input5" type="password" placeholder="Enter Password" name="psw" required><br>
+                            <input class="input5" type="password" placeholder="Enter Password" name="password" required><br>
                             <label><b>Confirm Password</b></label>
-                            <input class="input5" type="password" placeholder="Re-enter Password" name="re-enter psw" required><br>
+                            <input class="input5" type="password" placeholder="Re-enter Password" name="password" required><br>
                             <button type="submit" value="Register">Register</button><br>
                             <input type="checkbox" checked="checked"> Remember me
                             <span class="psw" > <a style="text-decoration: none;">Already have an account?<a href="/login/"> Login</a></a>
