@@ -27,10 +27,10 @@
                         </div>
                     </div>
                     <div class="full paddding_left_15">
-                        <form action="/login/" method="GET">
+                        <form action="/login/" method="POST">
                             {% csrf_token %}
-                                <label><b>Username</b></label>
-                                <input class="input1" type="text" placeholder="Enter Username" name="uname" required><br>
+                                <label><b>Email</b></label>
+                                <input class="input1" type="text" placeholder="Enter Email" name="email" required><br>
                                 <label><b>Password</b></label>
                                 <input class="input2" type="password" placeholder="Enter Password" name="psw" required>
                                 <button type="submit" >Login</button><br>
