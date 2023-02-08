@@ -33,6 +33,7 @@ def user_login(request):
         password = request.POST.get('psw')
         try:
             user_obj = User.objects.get(username=email)
+            # print(user_obj.first_name)
             if user_obj.check_password(password):
                 login(request, user_obj)
                 return redirect('dashboard')
@@ -40,7 +41,7 @@ def user_login(request):
                 messages.success(request, 'Password is Incorrect')
                 return redirect('login')
         except:
-            messages.error(request, 'Password is not matched')
+            messages.error(request, 'Email is not matched')
             return redirect('login')
 
     else:
