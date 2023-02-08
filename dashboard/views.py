@@ -18,11 +18,17 @@ def transactions(request):
 def faq(request):
     return render(request, 'dashboard_page/faq.html')
 
-def account_profile(request):
-    return render(request, 'dashboard_page/account-profile.html')
+def update_profile(request):
+    return render(request, 'dashboard_page/update profile.html')
 
 def account_login_history(request):
     return render(request, 'dashboard_page/account-login-history.html')
+
+def change_password(request):
+    return render(request, 'dashboard_page/change password.html')
+
+def profile(request):
+    return render(request, 'dashboard_page/profile.html')
 
 
 
