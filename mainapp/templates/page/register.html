@@ -30,7 +30,9 @@
                          {% if messages %}
                             {% for message in messages %}
                                 {% if message.tags == "success" %}
-                                    {{message}}
+                                    <h3 style="color:Green;">{{message}}</h3>
+                                    {% elif message.tags == "error" %}
+                                        <h3 style="color:Red;">{{message}}</h3>
                                 {% endif %}
                             {% endfor %}
                      {% endif %}
