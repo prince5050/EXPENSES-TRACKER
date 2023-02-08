@@ -8,8 +8,8 @@ def buy_ico(request):
     print('hi')
     return render(request, 'dashboard_page/buy-ico.html')
 
-def wallet(request):
-    return render(request, 'dashboard_page/wallet.html')
+def manage_expenses(request):
+    return render(request, 'dashboard_page/manage expenses.html')
 
 def transactions(request):
     return render(request, 'dashboard_page/transactions.html')
@@ -23,3 +23,8 @@ def account_profile(request):
 
 def account_login_history(request):
     return render(request, 'dashboard_page/account-login-history.html')
+
+
+
+
+
