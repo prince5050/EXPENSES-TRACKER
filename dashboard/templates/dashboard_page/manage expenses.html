@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="content-header-right col-md-4 col-12 d-none d-md-inline-block">
-            <div class="btn-group float-md-right"><a class="btn-gradient-secondary btn-sm white" href="wallet.html">Add expense</a></div>
+            <div class="btn-group float-md-right"><a class="btn-gradient-secondary btn-sm white" href="/add expense/">Add expense</a></div>
           </div>
         </div>
 
@@ -43,193 +43,98 @@
 <!--            <div class="btn-group float-md-right"><a class="btn-gradient-secondary btn-sm white" href="manage expenses.html">Buy now</a></div>-->
 <!--          </div>-->
 <!--        </div>-->
-          <div class="content-body"><div id="transactions">
-    <div class="transactions-table-th d-none d-md-block">
-        <div class="col-12">
-            <div class="row px-1">
-                <div class="col-md-2 col-12 py-1">
-                    <p class="mb-0">Date</p>
-                </div>
-                <div class="col-md-2 col-12 py-1">
-                    <p class="mb-0">Type</p>
-                </div>
-                <div class="col-md-2 col-12 py-1">
-                    <p class="mb-0">Amount</p>
-                </div>
-                <div class="col-md-1 col-12 py-1">
-                    <p class="mb-0">Currency</p>
-                </div>
-                <div class="col-md-2 col-12 py-1">
-                    <p class="mb-0">Tokens (CIC)</p>
-                </div>
-                <div class="col-md-3 col-12 py-1">
-                    <p class="mb-0">Details</p>
+
+              <div class="row">
+    <div id="recent-transactions" class="col-12">
+        <h6 class="my-2">Recent Expenses</h6>
+        <div class="card">
+            <div class="card-content">
+                <div class="table-responsive">
+                    <table id="recent-orders" class="table table-hover table-xl mb-0">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">Expense Name</th>
+                                <th class="border-top-0">Date</th>
+                                <th class="border-top-0">Category</th>
+                                <th class="border-top-0">Expense Type</th>
+                                <th class="border-top-0">Amount</th>
+                                <th class="border-top-0">View</th>
+                                <th class="border-top-0">Edit</th>
+                                <th class="border-top-0">Delete</th>
+
+                                <th class="border-top-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-truncate"><i class="la la-dot-circle-o success font-medium-1 mr-1"></i> Paid</td>
+                                <td class="text-truncate"><a href="#">2018-01-03</a></td>
+                                <td class="text-truncate">
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-success round">Deposit</a>
+                                </td>
+                                <td class="text-truncate p-1">5.34111</td>
+                                <td>
+                                    <i class="cc ETH-alt"></i> ETH
+                                </td>
+                                <td><button class="btn btn-success "><i class="ficon icon-eye"></i></button></td>
+                                <td> <button class="btn btn-warning "><i class="ficon icon-pencil"></i></button></td>
+                                <td> <button class="btn btn-danger "  data-toggle="modal" data-target="#exampleModal" ><i class="ficon icon-trash"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="text-truncate"><i class="la la-dot-circle-o success font-medium-1 mr-1"></i> Paid</td>
+                                <td class="text-truncate"><a href="#">2018-01-03</a></td>
+                                <td class="text-truncate">
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-success round">Deposit</a>
+                                </td>
+                                <td class="text-truncate p-1">5.34111</td>
+                                <td>
+                                    <i class="cc ETH-alt"></i> ETH
+                                </td>
+                                <td><button class="btn btn-success "><i class="ficon icon-eye"></i></button></td>
+                                  <td> <button class="btn btn-warning "><i class="ficon icon-pencil"></i></button></td>
+                                  <td> <button class="btn btn-danger " data-toggle="modal" data-target="#exampleModal"><i class="ficon icon-trash"></button></td>
+                            </tr>
+                            <tr>
+                                <td class="text-truncate"><i class="la la-dot-circle-o warning font-medium-1 mr-1"></i> in Process</td>
+                                <td class="text-truncate"><a href="#">2018-01-21</a></td>
+                                <td class="text-truncate">
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-warning round">Referral</a>
+                                </td>
+                                <td class="text-truncate p-1">-</td>
+                                <td>-</td>
+                                <td><button class="btn btn-success "><i class="ficon icon-eye"></i></button></td>
+                                  <td> <button class="btn btn-warning "><i class="ficon icon-pencil"></i></button></td>
+                                  <td> <button class="btn btn-danger " data-toggle="modal" data-target="#exampleModal"><i class="ficon icon-trash"></button></td>
+                            </tr>
+                            <tr>
+                                <td class="text-truncate"><i class="la la-dot-circle-o danger font-medium-1 mr-1"></i> Pending</td>
+                                <td class="text-truncate"><a href="#">2018-01-25</a></td>
+                                <td class="text-truncate">
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-danger round">Withdrawal</a>
+                                </td>
+                                <td class="text-truncate p-1">-</td>
+                                <td>-</td>
+                                <td><button class="btn btn-success"> <i class="ficon icon-eye"></i></button></td>
+                                  <td> <button class="btn btn-warning "><i class="ficon icon-pencil"></i></button></td>
+                                  <td> <button class="btn btn-danger " data-toggle="modal" data-target="#exampleModal"><i class="ficon icon-trash"></button></td>
+                            </tr>
+                            <tr>
+                                <td class="text-truncate"><i class="la la-dot-circle-o success font-medium-1 mr-1"></i> Paid</td>
+                                <td class="text-truncate"><a href="#">2018-01-28</a></td>
+                                <td class="text-truncate">
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-danger round">Deposit</a>
+                                </td>
+                                <td class="text-truncate p-1">0.8791</td>
+                                <td><i class="cc BTC-alt"></i> BTC</td>
+                                <td><button class="btn btn-success "><i class="ficon icon-eye"></i></button></td>
+                                  <td> <button class="btn btn-warning "><i class="ficon icon-pencil"></i></button></td>
+                                  <td> <button class="btn btn-danger " data-toggle="modal" data-target="#exampleModal"><i class="ficon icon-trash"></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="transactions-table-tbody">
-        <section class="card pull-up">
-            <div class="card-content">
-                <div class="card-body">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Date: </span>2018-01-03</p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <span class="d-inline-block d-md-none text-bold-700">Type: </span> <span class="d-inline-block d-md-none text-bold-700">Type: </span>  <a href="#" class="mb-0 btn-sm btn btn-outline-warning round">Deposit</a>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Amount: </span>  5.34111 </p>
-                            </div>
-                            <div class="col-md-1 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Currency: </span> <i class="cc ETH-alt"></i> ETH</p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Tokens: </span> - </p>
-                            </div>
-                            <div class="col-md-3 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Details: </span> Deposit to your Balance <i class="la la-thumbs-up warning float-right"></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="card pull-up">
-            <div class="card-content">
-                <div class="card-body">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Date:</span> 2018-01-03</p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <span class="d-inline-block d-md-none text-bold-700">Type: </span>  <a href="#" class="mb-0 btn-sm btn btn-outline-success round">Deposit</a>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Amount: </span>  5.34111 </p>
-                            </div>
-                            <div class="col-md-1 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Currency: </span> <i class="cc ETH-alt"></i> ETH</p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Tokens: </span> 3,258</p>
-                            </div>
-                            <div class="col-md-3 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Details: </span> Tokens Purchase</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="card pull-up">
-            <div class="card-content">
-                <div class="card-body">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Date:</span> 2018-01-03</p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <span class="d-inline-block d-md-none text-bold-700">Type: </span>  <a href="#" class="mb-0 btn-sm btn btn-outline-info round">Referral</a>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Amount: </span>  - </p>
-                            </div>
-                            <div class="col-md-1 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Currency: </span>  - </p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Tokens: </span> 200.88</p>
-                            </div>
-                            <div class="col-md-3 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Details: </span> Referral Promo Bonus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="card pull-up">
-            <div class="card-content">
-                <div class="card-body">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Date:</span> 2018-01-21</p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <span class="d-inline-block d-md-none text-bold-700">Type: </span>  <a href="#" class="mb-0 btn-sm btn btn-outline-danger round">Withdrawal</a>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Amount: </span>  - </p>
-                            </div>
-                            <div class="col-md-1 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Currency: </span>  - </p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Tokens: </span> - 3,458.88</p>
-                            </div>
-                            <div class="col-md-3 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Details: </span> Tokens withdrawn <i class="la la-dollar warning float-right"></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="card pull-up">
-            <div class="card-content">
-                <div class="card-body">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Date:</span> 2018-01-25</p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <span class="d-inline-block d-md-none text-bold-700">Type: </span>  <a href="#" class="mb-0 btn-sm btn btn-outline-warning round">Deposit</a>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Amount: </span> 0.8791 </p>
-                            </div>
-                            <div class="col-md-1 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Currency: </span> <i class="cc BTC-alt"></i> BTC</p>
-                            </div>
-                            <div class="col-md-2 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Tokens: </span>  - </p>
-                            </div>
-                            <div class="col-md-3 col-12 py-1">
-                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Details: </span> Deposit to your Balance <i class="la la-thumbs-up warning float-right"></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center pagination-separate pagination-flat">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">« Prev</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">Next »</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 </div>
         </div>
@@ -237,5 +142,24 @@
     </div>
 
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete expense</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          Are you sure you want to delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {%endblock%}
