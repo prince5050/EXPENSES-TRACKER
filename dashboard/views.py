@@ -30,6 +30,9 @@ def change_password(request):
 def profile(request):
     return render(request, 'dashboard_page/profile.html')
 
+def add_expense(request):
+    return render(request, 'dashboard_page/add expense.html')
+
 
 
 

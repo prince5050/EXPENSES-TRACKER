@@ -105,11 +105,12 @@
                 </ul>
               </li>
               <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="/manage expenses/"><i class="ficon icon-wallet"></i></a></li>
-              <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online"><img src="{% static 'dashboard_css/app-assets/images/portrait/small/user.png'%}" alt="avatar"></span><span class="mr-1"><span class="user-name text-bold-700">USER</span></span></a>
+              <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online"><img src="{% static 'dashboard_css/app-assets/images/portrait/small/user.png'%}" alt="avatar"></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
 <!--                  <a class="dropdown-item" href="update profile.html"><i class="ft-award"></i>John Doe</a>-->
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="/profile/"><i class="ft-user"></i> Profile</a><a class="dropdown-item" href="/manage expenses/"><i class="icon-wallet"></i> Manage expenses</a><a class="dropdown-item" href="transactions.html"><i class="ft-check-square"></i> Transactions</a>
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="account-login.html"><i class="ft-power"></i> Logout</a>
+               <a class="dropdown-item" href="/update profile/"><i class="ft-user"></i> Update Profile</a><a class="dropdown-item" href="/change password/"><i class="icon-lock-open">
+                </i> Change Password</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="account-login.html" data-toggle="modal" data-target="#exampleModal1"><i class="ft-power"></i> Logout</a>
                 </div>
               </li>
             </ul>
@@ -158,6 +159,27 @@
         </ul>
       </div>
     </div>
+
+
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          Do you want to Logout?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
 {%block dashboard_contentBody%}
 
     {% endblock %}
