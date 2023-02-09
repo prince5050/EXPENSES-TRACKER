@@ -26,6 +26,19 @@
                            <h2>User Registration</h2>
                         </div>
                     </div>
+                    <div>
+                         {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags == "success" %}
+                                    <h3 style="color:Green;">{{message}}</h3>
+                                    {% elif message.tags == "error" %}
+                                        <h3 style="color:Red;">{{message}}</h3>
+                                {% endif %}
+                            {% endfor %}
+                     {% endif %}
+
+                    </div>
+                    <br/>
                     <div class="full paddding_left_15">
                        <form action="/register/" method="POST">
                            {% csrf_token %}
