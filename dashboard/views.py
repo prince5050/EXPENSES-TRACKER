@@ -33,6 +33,12 @@ def profile(request):
 def add_expense(request):
     return render(request, 'dashboard_page/add expense.html')
 
+def view_expense(request):
+    return render(request, 'dashboard_page/view expense.html')
+def edit_expense(request):
+    return render(request, 'dashboard_page/edit expense.html')
+
+
 
 
 
