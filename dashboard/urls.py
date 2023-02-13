@@ -12,5 +12,6 @@ urlpatterns = [
     path('account-login-history/', views.account_login_history, name='account-login-history'),
     path('change password/', views.change_password, name='change password'),
     path('profile/', views.profile, name='profile'),
+    path('add expense/', views.add_expense, name='add expense'),
 
 ]
