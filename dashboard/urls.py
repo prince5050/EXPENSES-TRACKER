@@ -13,5 +13,7 @@ urlpatterns = [
     path('change password/', views.change_password, name='change password'),
     path('profile/', views.profile, name='profile'),
     path('add expense/', views.add_expense, name='add expense'),
+    path('view expense/', views.view_expense, name='view expense'),
+    path('edit expense/', views.edit_expense, name='edit expense'),
 
 ]
