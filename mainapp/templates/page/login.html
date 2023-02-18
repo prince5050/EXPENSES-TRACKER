@@ -27,15 +27,21 @@
                         </div>
                     </div>
                     <div>
-                         {% if messages %}
-                            {% for message in messages %}
-                                {% if message.tags == "success" %}
-                                    <h3 style="color:Green;">{{message}}</h3>
-                                    {% elif message.tags == "error" %}
-                                        <h3 style="color:Red;">{{message}}</h3>
-                                {% endif %}
-                            {% endfor %}
-                     {% endif %}
+                        {% if messages %}
+                                    {% for message in messages %}
+                                    {% if message.tags == 'success'%}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="message_success">
+                                        <strong>{{message}}</strong>
+                                    </div>
+
+                                    {% else %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="message_error">
+                                        <strong>{{message}}</strong>
+
+                                    </div>
+                                    {% endif %}
+                                    {%endfor%}
+                                    {% endif %}
 
                     </div>
                     <div class="full paddding_left_15">

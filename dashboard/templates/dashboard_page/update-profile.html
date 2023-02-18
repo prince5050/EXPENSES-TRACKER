@@ -29,22 +29,38 @@
             <div class="card-content">
                 <div class="card-body">
                     <div class="col-12">
+                        {% if messages %}
+                                    {% for message in messages %}
+                                    {% if message.tags == 'success'%}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="message_success">
+                                        <strong>{{message}}</strong>
+                                    </div>
+
+                                    {% else %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="message_error">
+                                        <strong>{{message}}</strong>
+
+                                    </div>
+                                    {% endif %}
+                                    {%endfor%}
+                                    {% endif %}
                         <div class="row">
                             <div class="col-md-2 col-12">
                                 <img src="{% static 'dashboard_css/app-assets/images/portrait/small/user.png'%}" class="rounded-circle height-100" alt="Card image" />
                             </div>
                             <div class="col-md-10 col-12">
 
-                                <form class="form-horizontal form-user-profile row mt-2" action="index.html">
+                                <form class="form-horizontal form-user-profile row mt-2" action="/update-profile/" method="POST">
+                                    {% csrf_token %}
                                     <div class="col-6">
                                         <fieldset class="form-label-group">
-                                            <input type="text" class="form-control" id="first-name" value=" " required="" autofocus="">
+                                            <input type="text" class="form-control" id="first-name" value="{{user_obj.user.first_name}}" required="" autofocus="" name="fname">
                                             <label for="first-name">First name</label>
                                         </fieldset>
                                     </div>
                                     <div class="col-6">
                                         <fieldset class="form-label-group">
-                                            <input type="text" class="form-control" id="last-name" value=" " required="" autofocus="">
+                                            <input type="text" class="form-control" id="last-name" value=" {{user_obj.user.last_name}}" required="" autofocus="" name="lname">
                                             <label for="last-name">Last name</label>
                                         </fieldset>
                                     </div>
@@ -56,31 +72,31 @@
 <!--                                    </div>-->
                                     <div class="col-6">
                                         <fieldset class="form-label-group">
-                                            <input type="number" class="form-control" id="Mobile number" value=" " required="" autofocus="">
+                                            <input type="number" class="form-control" id="Mobile number" value="{{user_obj.mobile}}" required="" autofocus="" name="mobile">
                                             <label for="Mobile number">Mobile number</label>
                                         </fieldset>
                                     </div>
                                       <div class="col-6">
                                         <fieldset class="form-label-group">
-                                            <input type="text" class="form-control" id="email-address" value=" " required="" autofocus="">
+                                            <input type="text" class="form-control" id="email-address" value=" {{user_obj.user.email}}" readonly autofocus="">
                                             <label for="email-address">Email</label>
                                         </fieldset>
                                     </div>
                                     <div class="col-6">
                                         <fieldset class="form-label-group">
-                                            <input type="text" class="form-control" id="City" value=" " required="" autofocus="">
+                                            <input type="text" class="form-control" id="City" value="{{user_obj.city}}" required="" autofocus="" name="city">
                                             <label for="City">City</label>
                                         </fieldset>
-                                    </div
+                                    </div>
                                     <div class="col-6">
                                         <fieldset class="form-label-group">
-                                            <input type="text" class="form-control" id="State" value=" " required="" autofocus="">
+                                            <input type="text" class="form-control" id="State" value="{{user_obj.state}}" required="" autofocus="" name="state">
                                             <label for="State">State</label>
                                         </fieldset>
                                     </div>
                                     <div class="col-6">
                                         <fieldset class="form-label-group">
-                                            <input type="text" class="form-control" id="Country" value=" " required="" autofocus="">
+                                            <input type="text" class="form-control" id="Country" value="{{user_obj.country}}" required="" autofocus="" name="country">
                                             <label for="Country">Country</label>
                                         </fieldset>
                                     </div>
