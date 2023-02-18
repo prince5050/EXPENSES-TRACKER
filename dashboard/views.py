@@ -1,3 +1,4 @@
+from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import request, HttpResponseRedirect
@@ -5,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.template import context
 
-from dashboard.models import Expense
+from dashboard.models import Expense, Profile
 from expensestracker import settings
 
 
@@ -19,6 +20,8 @@ def dashboard(request):
         amt.append(i.amount)
         expenses_type.append(i.Category)
     return render(request, 'dashboard_page/index.html', {'amt': amt, 'expenses_type': expenses_type})
+
+
 #
 # def buy_ico(request):
 #     print('hi')
@@ -27,6 +30,7 @@ def dashboard(request):
 def manage_expenses(request):
     return render(request, 'dashboard_page/manage expenses.html')
 
+
 def transactions(request):
     return render(request, 'dashboard_page/transactions.html')
 
@@ -34,28 +38,84 @@ def transactions(request):
 def faq(request):
     return render(request, 'dashboard_page/faq.html')
 
+
 def update_profile(request):
-    return render(request, 'dashboard_page/update profile.html')
+    if request.method == 'POST':
+        # try:
+            User.objects.filter(id=request.user.id).update(first_name=request.POST.get('fname'),
+                                                           last_name=request.POST.get('lname'))
+            profile_obj = Profile.objects.get(user_id=request.user.id)
+            if profile_obj:
+                profile_obj.mobile = request.POST.get('mobile')
+                profile_obj.city = request.POST.get('city')
+                profile_obj.state = request.POST.get('state')
+                profile_obj.country = request.POST.get('country')
+                profile_obj.save()
+            messages.success(request, "Profile Updated Successfully")
+            return redirect('update-profile')
+        # except:
+        #     messages.error(request, "Something Went Wrong")
+        #     return redirect('update-profile')
+    else:
+        pro_obj = Profile.objects.get(user_id=request.user.id)
+        return render(request, 'dashboard_page/update-profile.html', {"user_obj": pro_obj})
+
 
 def account_login_history(request):
     return render(request, 'dashboard_page/account-login-history.html')
 
+
 def change_password(request):
-    return render(request, 'dashboard_page/change password.html')
+    try:
+        if request.user.is_authenticated:
+            if request.method == 'POST':
+                old_password = request.POST.get('old_password')
+                new_password = request.POST.get('new_password')
+                confirm_password = request.POST.get('confirm_password')
+                # validation
+                if not new_password == confirm_password:
+                    messages.error(request, "Confirm Password Not matched with Confirm Password")
+                    return redirect('change_password')
+                else:
+                    user = User.objects.get(email=request.user.email)
+                    if user.check_password(old_password):
+                        user.set_password(confirm_password)
+                        user.save()
+                        update_session_auth_hash(request, user)
+                        messages.success(request, "Password Updated Successfully")
+                        return redirect('change_password')
+
+                    else:
+                        messages.error(request, "Old Password Not match")
+                        return redirect('change_password')
+
+            else:
+                return render(request, 'dashboard_page/change password.html')
+        else:
+            return render(request, 'dashboard_page/change password.html')
+    except:
+        return redirect('login')
+
 
 def profile(request):
     return render(request, 'dashboard_page/profile.html')
 
+
 def add_expense(request):
     return render(request, 'dashboard_page/add expense.html')
 
+
 def view_expense(request):
     return render(request, 'dashboard_page/view expense.html')
+
 
 def edit_expense(request):
     return render(request, 'dashboard_page/edit expense.html')
 
 
+def logout1_request(request):
+    logout(request)
+    return redirect('home')
 
 # def add_expense(request):
 #     if request.method == 'POST':
@@ -75,24 +135,19 @@ def edit_expense(request):
 #         return render(request,'dashboard_page/add expense.html')
 
 
-        # try:
-        #     expense_name = request.post['expense_name']
-        #     if not expense_name:
-        #         messages.error(request,'Expense name is required')
-        #         return render(request, 'dashboard_page/add_expense.html',context)
-        #     Category = request.POST['category']
-         #    expense_type = request.post['expense_type']
-        #     if not expense_type:
-        #         messages.error(request,'Expense type is required')
-        #         return render(request, 'dashboard_page/add_expense.html',context)
+# try:
+#     expense_name = request.post['expense_name']
+#     if not expense_name:
+#         messages.error(request,'Expense name is required')
+#         return render(request, 'dashboard_page/add_expense.html',context)
+#     Category = request.POST['category']
+#    expense_type = request.post['expense_type']
+#     if not expense_type:
+#         messages.error(request,'Expense type is required')
+#         return render(request, 'dashboard_page/add_expense.html',context)
 
-        #
-        #
-        #
-        # except:
-        #     return redirect('dashboard_page/manage expenses.html')
-
-
-
-
-
+#
+#
+#
+# except:
+#     return redirect('dashboard_page/manage expenses.html')

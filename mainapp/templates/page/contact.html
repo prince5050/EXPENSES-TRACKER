@@ -38,15 +38,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 offset-lg-3">
+
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    {% if message.tags == 'success'%}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="message_success">
+                                        <strong>{{message}}</strong>
+                                    </div>
+
+                                    {% else %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="message_error">
+                                        <strong>{{message}}</strong>
+
+                                    </div>
+                                    {% endif %}
+                                    {%endfor%}
+                                    {% endif %}
                     <div class="full">
-                            <form >
-                                <label><b>Username</b></label>
-                                <input class="input1" type="text" placeholder="Enter Username" name="uname" required><br>
+                            <form action="/contact/" method="POST">
+                                {% csrf_token %}
+                                <label><b>Name</b></label>
+                                <input class="input1" type="text" placeholder="Enter your name" name="name" required><br>
                                 <label><b>Email</b></label>
                                 <input class="input6" type="email" placeholder="Enter your Email address" name="email" required><br>
                                 <label><b>Mobile number</b></label>
-                                <input class="input7" type="number" placeholder="Enter your Mobile number" name="number" required><br><br>
-                                <textarea placeholder="Message" style="width:100%;padding: 25px;"></textarea>
+                                <input class="input7" type="number" placeholder="Enter your Mobile number" name="mobile" required><br>
+                                <label><b>Subject</b></label>
+                                <input class="input1"  type="text" placeholder="Enter subject" name="subject" required><br>
+                                <label><b>Message</b></label>
+                                <textarea placeholder="Message" style="width:100%;padding: 25px;" name="message"></textarea>
                                 <button type="submit" >Send</button><br>
                             </form>
                     </div>

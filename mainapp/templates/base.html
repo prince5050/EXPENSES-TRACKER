@@ -292,6 +292,30 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
+
+        // < !--Time Out for success Message-- >
+      var message_success = document.getElementById("message_success");
+      if (message_success != null) {
+         setTimeout(function () {
+            message_success.style.display = "none";
+         }, 8000);
+      }
+
+
+      // < !--Time Out for Error Message-- >
+      var message_error = document.getElementById("message_error");
+
+      if (message_error != null) {
+         setTimeout(function () {
+            message_error.style.display = "none";
+         }, 8000);
+      }
+
+      // < !--Script for reset form-- >
+      function submitForm() {
+         document.getElementById("my_form").reset();
+      }
+
 	</script>
 </body>
 </html>
