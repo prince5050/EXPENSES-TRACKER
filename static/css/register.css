@@ -5,7 +5,8 @@
             .input4[type=text],
             .input5[type=password],
             .input6[type=email] ,
-            .input7[type=number]
+            .input7[type=number],
+            .input8[type=text]
             {
                 width: 100%;
                 padding: 12px 20px;
