@@ -45,51 +45,51 @@
 </div>
 <!--/ ICO Token &  Distribution-->
 <!-- Purchase token -->
-<div class="row">
-    <div class="col-12">
-        <div class="card pull-up">
-            <div class="card-content collapse show">
-                <div class="card-body">
-                    <form class="form-horizontal form-purchase-token row" action="buy-ico.html">
-                        <div class="col-md-2 col-12">
-                            <fieldset class="form-label-group mb-0">
-                                <input type="text" class="form-control" id="ico-token" value="5000" required="" autofocus="">
-                                <label for="ico-token">ICO Token</label>
-                            </fieldset>
-                        </div>
-                        <div class="col-md-1 col-12 text-center">
-                            <span class="la la-arrow-right"></span>
-                        </div>
-                        <div class="col-md-2 col-12">
-                            <fieldset class="form-label-group mb-0">
-                                <input type="text" class="form-control" id="selected-crypto" value="1" required="" autofocus="">
-                                <label for="selected-crypto">ETH</label>
-                            </fieldset>
-                        </div>
-                        <div class="col-md-1 col-12">
-                            <select class="custom-select">
-                                <option selected>ETH</option>
-                                <option value="1">BTC</option>
-                                <option value="2">LTC</option>
-                                <option value="3">USDT</option>
-                                <option value="3">Credit Card</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 col-12 mb-1">
-                            <fieldset class="form-label-group mb-0">
-                                <input type="text" class="form-control" id="wallet-address" value="0xe834a970619218d0a7db4ee5a3c87022e71e177f" required="" autofocus="">
-                                <label for="wallet-address">Wallet address</label>
-                            </fieldset>
-                        </div>
-                        <div class="col-md-2 col-12 text-center">
-                            <button type="submit" class="btn-gradient-secondary">Buy now</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="row">-->
+<!--    <div class="col-12">-->
+<!--        <div class="card pull-up">-->
+<!--            <div class="card-content collapse show">-->
+<!--                <div class="card-body">-->
+<!--                    <form class="form-horizontal form-purchase-token row" action="buy-ico.html">-->
+<!--                        <div class="col-md-2 col-12">-->
+<!--                            <fieldset class="form-label-group mb-0">-->
+<!--                                <input type="text" class="form-control" id="ico-token" value="5000" required="" autofocus="">-->
+<!--                                <label for="ico-token">ICO Token</label>-->
+<!--                            </fieldset>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-1 col-12 text-center">-->
+<!--                            <span class="la la-arrow-right"></span>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-2 col-12">-->
+<!--                            <fieldset class="form-label-group mb-0">-->
+<!--                                <input type="text" class="form-control" id="selected-crypto" value="1" required="" autofocus="">-->
+<!--                                <label for="selected-crypto">ETH</label>-->
+<!--                            </fieldset>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-1 col-12">-->
+<!--                            <select class="custom-select">-->
+<!--                                <option selected>ETH</option>-->
+<!--                                <option value="1">BTC</option>-->
+<!--                                <option value="2">LTC</option>-->
+<!--                                <option value="3">USDT</option>-->
+<!--                                <option value="3">Credit Card</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-4 col-12 mb-1">-->
+<!--                            <fieldset class="form-label-group mb-0">-->
+<!--                                <input type="text" class="form-control" id="wallet-address" value="0xe834a970619218d0a7db4ee5a3c87022e71e177f" required="" autofocus="">-->
+<!--                                <label for="wallet-address">Wallet address</label>-->
+<!--                            </fieldset>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-2 col-12 text-center">-->
+<!--                            <button type="submit" class="btn-gradient-secondary">Buy now</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!--/ Purchase token -->
 <!-- ICO Token balance & sale progress -->
 <div class="row">
@@ -353,5 +353,76 @@
         </div>
       </div>
     </div>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script type="text/javascript">
 
+
+
+
+
+
+
+$(document).ready(function() {
+// ICO TOKEN (SUPPLY & DEMAND)
+    var verticalBar3 = new Chartist.Bar('#ico-token-supply-demand-chart', {
+        //labels: ['Q1 2018', 'Q2 2018', 'Q3 2018', 'Q4 2018', 'Q1 2019', 'Q2 2019', 'Q3 2019', 'Q4 2019', 'Q1 2020', 'Q2 2020', 'Q3 2020', 'Q4 2020'],
+        labels: [{% for a in expenses_type %}'{{a}}',{%endfor%}],
+        series: [     [{% for a in amt %}{{a}},{%endfor%}],
+
+        ]
+    }, {
+        axisY: {
+        //    labelInterpolationFnc: function(value) {
+        //        return (value / 1000) + 'k';
+          //  },
+          //  scaleMinSpace: 40,
+        },
+        axisX: {
+            showGrid: false,
+            labelInterpolationFnc: function(value, index) {
+                return value;
+            }
+        },
+        plugins: [
+            Chartist.plugins.tooltip({
+                appendToBody: true,
+                pointClass: 'ct-point'
+            })
+        ]
+    });
+    verticalBar3.on('draw', function(data) {
+        if (data.type === 'bar') {
+            data.element.attr({
+                style: 'stroke-width: 25px',
+                y1: 250,
+                x1: data.x1 + 0.001
+            });
+            data.group.append(new Chartist.Svg('circle', {
+                cx: data.x2,
+                cy: data.y2,
+                r: 12
+            }, 'ct-slice-pie'));
+        }
+    });
+    verticalBar3.on('created', function(data) {
+        var defs = data.svg.querySelector('defs') || data.svg.elem('defs');
+        defs.elem('linearGradient', {
+            id: 'barGradient3',
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+        }).elem('stop', {
+            offset: 0,
+            'stop-color': 'rgb(28, 120, 255)'
+        }).parent().elem('stop', {
+            offset: 1,
+            'stop-color': 'rgb(41, 188, 253)'
+        });
+        return defs;
+    });
+
+});
+
+</script>
 {% endblock %}
