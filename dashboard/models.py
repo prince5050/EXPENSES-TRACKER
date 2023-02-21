@@ -10,6 +10,10 @@ SELECT_CATEGORY_CHOICES = [
     ("Shopping", "Shopping"),
     ("Necessities", "Necessities"),
     ("Entertainment", "Entertainment"),
+    ("Personal spending", "Personal spending"),
+    ("Medical", "Medical"),
+    ("Insurance", "Insurance"),
+    ("Banking", "Banking"),
     ("Other", "Other")
 
 ]
@@ -25,7 +29,6 @@ class Profile(models.Model):
     mobile = models.CharField(max_length=20, null=True, blank=True)
     city = models.CharField(max_length=20, null=True, blank=True)
     state = models.CharField(max_length=20, null=True, blank=True)
-    gender = models.CharField(max_length=50, blank=True, null=True)
     status = models.CharField(max_length=50, choices=status_list, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 
