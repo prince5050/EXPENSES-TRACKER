@@ -19,7 +19,13 @@
         </div>
     </div>
     <div class="col-xl-6 col-lg-12">
+        <div class="btn-group dropdown">
+                    <h6>Monthly Expense(Pie-chart)</h6>
+                </div>
+            <br>
+            <br/>
         <canvas id="myChart" ></canvas>
+
 <!--        <div class="card card-transparent">-->
 <!--            <div class="card-header card-header-transparent">-->
 <!--                <h6 class="card-title">Monthly Expenses(Pie-chart)</h6>-->
@@ -43,6 +49,23 @@
 <!--            </div>-->
 <!--        </div>-->
     </div>
+        <div class="col-xl-6 col-lg-12">
+            <div class="btn-group dropdown">
+                    <h6>Monthly Expense(line-chart)</h6>
+                </div>
+            <br>
+            <br/>
+            <canvas id="myChart1" ></canvas>
+
+        </div>
+    <div class="col-xl-6 col-lg-12">
+        <div class="btn-group dropdown">
+                    <h6>Monthly Expense(Scatter-plot)</h6>
+                </div>
+            <br>
+            <br/>
+        <canvas id="myChart2" ></canvas>
+        </div>
 </div>
 <!--/ ICO Token &  Distribution-->
 <!-- Purchase token -->
@@ -430,7 +453,7 @@ var barColors = [
 ];
 
 new Chart("myChart", {
-  type: "doughnut",
+  type: "pie",
   data: {
     labels: xValues,
     datasets: [{
@@ -441,7 +464,50 @@ new Chart("myChart", {
   options: {
     title: {
       display: true,
-      text: "Monthly Expenses (pie-chart)"
+
+      //text: "Monthly Expenses (pie-chart)"
+    }
+  }
+});
+
+var xValues = [{% for a in expenses_type %}'{{a}}',{%endfor%}];
+var yValues = [{% for a in amt %}{{a}},{%endfor%}];
+
+new Chart("myChart1", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+options: {
+    legend: {display: false},
+  }
+});
+
+var xValues = [{% for a in expenses_type %}'{{a}}',{%endfor%}];
+var yValues = [{% for a in amt %}{{a}},{%endfor%}];
+
+new Chart("myChart2", {
+  type: "scatter",
+  data: {
+  labels: xValues,
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "rgb(0,0,255)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+     //xAxes: [{ticks: {min: 40, max:160}}],
+      //yAxes: [{ticks: {min: 6, max:16}}],
     }
   }
 });
