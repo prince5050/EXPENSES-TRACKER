@@ -10,6 +10,10 @@ SELECT_CATEGORY_CHOICES = [
     ("Shopping", "Shopping"),
     ("Necessities", "Necessities"),
     ("Entertainment", "Entertainment"),
+    ("Personal spending", "Personal spending"),
+    ("Medical", "Medical"),
+    ("Insurance", "Insurance"),
+    ("Banking", "Banking"),
     ("Other", "Other")
 ]
 
