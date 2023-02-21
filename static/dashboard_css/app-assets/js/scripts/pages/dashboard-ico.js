@@ -68,153 +68,153 @@ $(window).on("load", function() {
 //        return defs;
 //    });
 
-
-    // TOKEN DISTRIBUTION
-    var chart = new Chartist.Pie('#token-distribution-chart', {
-        // series: [10, 20, 50, 20, 5, 50, 15],
-        series: [{
-                "name": "Crowdsale",
-                "className": "ct-crowdsale",
-                "value": 41
-            },
-            {
-                "name": "Team",
-                "className": "ct-team",
-                "value": 18
-            },
-            {
-                "name": "Advisors",
-                "className": "ct-advisors",
-                "value": 15
-            },
-            {
-                "name": "Project reserve",
-                "className": "ct-project-advisors",
-                "value": 10
-            },
-            {
-                "name": "Masternodes",
-                "className": "ct-masternodes",
-                "value": 8
-            },
-            {
-                "name": "Program",
-                "className": "ct-program",
-                "value": 8
-            },
-        ],
-
-        labels: ["Crowdsale", "Team", "Advisors", "Project reserve", "Masternodes", "Program"]
-    }, {
-        donut: true,
-        startAngle: 310,
-        donutSolid: true,
-        donutWidth: 30,
-        labelInterpolationFnc: function(value) {
-            var total = chart.data.series.reduce(function(prev, series) {
-                return prev + series.value;
-            }, 0);
-            return total + '%';
-        }
-    });
-
-    chart.on('created', function() {
-        var defs = chart.svg.elem('defs');
-
-        defs.elem('linearGradient', {
-            id: 'ct-crowdsale',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#2191ff'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#2abbfe'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-team',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#892ffe'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#c37bfe'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-advisors',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#6aecae'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#39d98c'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-project-advisors',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#f19686'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#e85d44'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-masternodes',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#e67ea5'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#fa679d'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-program',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#99f3f3'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#33d4d8'
-        });
-    });
-    chart.on('draw', function(data) {
-        if (data.type === 'label') {
-            if (data.index === 0) {
-                data.element.attr({
-                    dx: data.element.root().width() / 2,
-                    dy: data.element.root().height() / 2
-                });
-            } else {
-                data.element.remove();
-            }
-        }
-    });
-});
+//
+//    // TOKEN DISTRIBUTION
+//    var chart = new Chartist.Pie('#token-distribution-chart', {
+//        // series: [10, 20, 50, 20, 5, 50, 15],
+//        series: [{
+//                "name": "Crowdsale",
+//                "className": "ct-crowdsale",
+//                "value": 41
+//            },
+//            {
+//                "name": "Team",
+//                "className": "ct-team",
+//                "value": 18
+//            },
+//            {
+//                "name": "Advisors",
+//                "className": "ct-advisors",
+//                "value": 15
+//            },
+//            {
+//                "name": "Project reserve",
+//                "className": "ct-project-advisors",
+//                "value": 10
+//            },
+//            {
+//                "name": "Masternodes",
+//                "className": "ct-masternodes",
+//                "value": 8
+//            },
+//            {
+//                "name": "Program",
+//                "className": "ct-program",
+//                "value": 8
+//            },
+//        ],
+//
+//        labels: ["Crowdsale", "Team", "Advisors", "Project reserve", "Masternodes", "Program"]
+//    }, {
+//        donut: true,
+//        startAngle: 310,
+//        donutSolid: true,
+//        donutWidth: 30,
+//        labelInterpolationFnc: function(value) {
+//            var total = chart.data.series.reduce(function(prev, series) {
+//                return prev + series.value;
+//            }, 0);
+//            return total + '%';
+//        }
+//    });
+//
+//    chart.on('created', function() {
+//        var defs = chart.svg.elem('defs');
+//
+//        defs.elem('linearGradient', {
+//            id: 'ct-crowdsale',
+//            x1: 0,
+//            y1: 1,
+//            x2: 0,
+//            y2: 0
+//        }).elem('stop', {
+//            offset: 0,
+//            'stop-color': '#2191ff'
+//        }).parent().elem('stop', {
+//            offset: 1,
+//            'stop-color': '#2abbfe'
+//        });
+//
+//        defs.elem('linearGradient', {
+//            id: 'ct-team',
+//            x1: 0,
+//            y1: 1,
+//            x2: 0,
+//            y2: 0
+//        }).elem('stop', {
+//            offset: 0,
+//            'stop-color': '#892ffe'
+//        }).parent().elem('stop', {
+//            offset: 1,
+//            'stop-color': '#c37bfe'
+//        });
+//
+//        defs.elem('linearGradient', {
+//            id: 'ct-advisors',
+//            x1: 0,
+//            y1: 1,
+//            x2: 0,
+//            y2: 0
+//        }).elem('stop', {
+//            offset: 0,
+//            'stop-color': '#6aecae'
+//        }).parent().elem('stop', {
+//            offset: 1,
+//            'stop-color': '#39d98c'
+//        });
+//
+//        defs.elem('linearGradient', {
+//            id: 'ct-project-advisors',
+//            x1: 0,
+//            y1: 1,
+//            x2: 0,
+//            y2: 0
+//        }).elem('stop', {
+//            offset: 0,
+//            'stop-color': '#f19686'
+//        }).parent().elem('stop', {
+//            offset: 1,
+//            'stop-color': '#e85d44'
+//        });
+//
+//        defs.elem('linearGradient', {
+//            id: 'ct-masternodes',
+//            x1: 0,
+//            y1: 1,
+//            x2: 0,
+//            y2: 0
+//        }).elem('stop', {
+//            offset: 0,
+//            'stop-color': '#e67ea5'
+//        }).parent().elem('stop', {
+//            offset: 1,
+//            'stop-color': '#fa679d'
+//        });
+//
+//        defs.elem('linearGradient', {
+//            id: 'ct-program',
+//            x1: 0,
+//            y1: 1,
+//            x2: 0,
+//            y2: 0
+//        }).elem('stop', {
+//            offset: 0,
+//            'stop-color': '#99f3f3'
+//        }).parent().elem('stop', {
+//            offset: 1,
+//            'stop-color': '#33d4d8'
+//        });
+//    });
+//    chart.on('draw', function(data) {
+//        if (data.type === 'label') {
+//            if (data.index === 0) {
+//                data.element.attr({
+//                    dx: data.element.root().width() / 2,
+//                    dy: data.element.root().height() / 2
+//                });
+//            } else {
+//                data.element.remove();
+//            }
+//        }
+//    });
+//});
