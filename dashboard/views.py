@@ -28,7 +28,8 @@ def dashboard(request):
 #     return render(request, 'dashboard_page/buy-ico.html')
 
 def manage_expenses(request):
-    return render(request, 'dashboard_page/manage expenses.html')
+    obj = Expense.objects.filter(user_id=request.user)
+    return render(request, 'dashboard_page/manage expenses.html', {'all_add': obj})
 
 
 def transactions(request):
