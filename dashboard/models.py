@@ -11,6 +11,7 @@ SELECT_CATEGORY_CHOICES = [
     ("Necessities", "Necessities"),
     ("Entertainment", "Entertainment"),
     ("Other", "Other")
+
 ]
 
 class Profile(models.Model):
