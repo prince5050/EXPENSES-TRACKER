@@ -8,7 +8,7 @@
         </div>
         <div class="content-body"><!-- ICO Token &  Distribution-->
 <div class="row match-height">
-    <div class="col-xl-8 col-12">
+    <div class="col-xl-6 col-12">
         <div class="card card-transparent">
             <div class="card-header card-header-transparent py-20">
                 <div class="btn-group dropdown">
@@ -18,30 +18,54 @@
             <div id="ico-token-supply-demand-chart" class="height-300"></div>
         </div>
     </div>
-    <div class="col-xl-4 col-lg-12">
-        <div class="card card-transparent">
-            <div class="card-header card-header-transparent">
-                <h6 class="card-title">Monthly Expenses(Pie-chart)</h6>
-            </div>
-            <div class="card-content">
-                <div id="token-distribution-chart" class="height-200 donut donutShadow"></div>
-                <div class="card-body">
-                    <div class="row mx-0">
-                        <ul class="token-distribution-list col-md-6 mb-0">
-                            <li class="crowd-sale">Food <span class="float-right text-muted">41%</span></li>
-                            <li class="team">Travel <span class="float-right text-muted">18%</span></li>
-                            <li class="advisors">Shopping <span class="float-right text-muted">15%</span></li>
-                        </ul>
-                        <ul class="token-distribution-list col-md-6 mb-0">
-                            <li class="project-reserve">Entertainment <span class="float-right text-muted">10%</span></li>
-                            <li class="master-nodes">Necessities <span class="float-right text-muted">8%</span></li>
-                            <li class="program">Other <span class="float-right text-muted">8%</span></li>
-                        </ul>
-                    </div>
+    <div class="col-xl-6 col-lg-12">
+        <div class="btn-group dropdown">
+                    <h6>Monthly Expense(Pie-chart)</h6>
                 </div>
-            </div>
-        </div>
+            <br>
+            <br/>
+        <canvas id="myChart" ></canvas>
+
+<!--        <div class="card card-transparent">-->
+<!--            <div class="card-header card-header-transparent">-->
+<!--                <h6 class="card-title">Monthly Expenses(Pie-chart)</h6>-->
+<!--            </div>-->
+<!--            <div class="card-content">-->
+<!--                <div id="token-distribution-chart" class="height-200 donut donutShadow"></div>-->
+<!--                <div class="card-body">-->
+<!--                    <div class="row mx-0">-->
+<!--                        <ul class="token-distribution-list col-md-6 mb-0">-->
+<!--                            <li class="crowd-sale">Food <span class="float-right text-muted">41%</span></li>-->
+<!--                            <li class="team">Travel <span class="float-right text-muted">18%</span></li>-->
+<!--                            <li class="advisors">Shopping <span class="float-right text-muted">15%</span></li>-->
+<!--                        </ul>-->
+<!--                        <ul class="token-distribution-list col-md-6 mb-0">-->
+<!--                            <li class="project-reserve">Entertainment <span class="float-right text-muted">10%</span></li>-->
+<!--                            <li class="master-nodes">Necessities <span class="float-right text-muted">8%</span></li>-->
+<!--                            <li class="program">Other <span class="float-right text-muted">8%</span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
+        <div class="col-xl-6 col-lg-12">
+            <div class="btn-group dropdown">
+                    <h6>Monthly Expense(line-chart)</h6>
+                </div>
+            <br>
+            <br/>
+            <canvas id="myChart1" ></canvas>
+
+        </div>
+    <div class="col-xl-6 col-lg-12">
+        <div class="btn-group dropdown">
+                    <h6>Monthly Expense(Scatter-plot)</h6>
+                </div>
+            <br>
+            <br/>
+        <canvas id="myChart2" ></canvas>
+        </div>
 </div>
 <!--/ ICO Token &  Distribution-->
 <!-- Purchase token -->
@@ -354,12 +378,8 @@
       </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script type="text/javascript">
-
-
-
-
-
 
 
 $(document).ready(function() {
@@ -422,157 +442,77 @@ $(document).ready(function() {
         return defs;
     });
 
+var xValues = [{% for a in expenses_type %}'{{a}}',{%endfor%}];
+var yValues = [{% for a in amt %}{{a}},{%endfor%}];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+
+      //text: "Monthly Expenses (pie-chart)"
+    }
+  }
+});
+
+var xValues = [{% for a in expenses_type %}'{{a}}',{%endfor%}];
+var yValues = [{% for a in amt %}{{a}},{%endfor%}];
+
+new Chart("myChart1", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+options: {
+    legend: {display: false},
+  }
+});
+
+var xValues = [{% for a in expenses_type %}'{{a}}',{%endfor%}];
+var yValues = [{% for a in amt %}{{a}},{%endfor%}];
+
+new Chart("myChart2", {
+  type: "scatter",
+  data: {
+  labels: xValues,
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "rgb(0,0,255)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+     //xAxes: [{ticks: {min: 40, max:160}}],
+      //yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
 });
 
 </script>
-<script>
-     var chart = new Chartist.Pie('#token-distribution-chart', {
-        // series: [10, 20, 50, 20, 5, 50, 15],
-        series: [{
-                "expense_type": "Food",
-                "className": "ct-crowdsale",
-                "value": 41
-            },
-            {
-                "expense_type": "Travel",
-                "className": "ct-team",
-                "value": 18
-            },
-            {
-                "expense_type": "Shopping",
-                "className": "ct-advisors",
-                "value": 15
-            },
-            {
-                "expense_type": "Necessities",
-                "className": "ct-project-advisors",
-                "value": 10
-            },
-            {
-                "expense_type": "Entertainment",
-                "className": "ct-masternodes",
-                "value": 8
-            },
-            {
-                "expense_type": "Other",
-                "className": "ct-program",
-                "value": 8
-            },
-        ],
 
-        labels: ["Crowdsale", "Team", "Advisors", "Project reserve", "Masternodes", "Program"]
-    }, {
-        donut: true,
-        startAngle: 310,
-        donutSolid: true,
-        donutWidth: 30,
-        labelInterpolationFnc: function(value) {
-            var total = chart.data.series.reduce(function(prev, series) {
-                return prev + series.value;
-            }, 0);
-            return total + '%';
-        }
-    });
-
-    chart.on('created', function() {
-        var defs = chart.svg.elem('defs');
-
-        defs.elem('linearGradient', {
-            id: 'ct-crowdsale',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#2191ff'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#2abbfe'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-team',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#892ffe'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#c37bfe'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-advisors',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#6aecae'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#39d98c'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-project-advisors',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#f19686'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#e85d44'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-masternodes',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#e67ea5'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#fa679d'
-        });
-
-        defs.elem('linearGradient', {
-            id: 'ct-program',
-            x1: 0,
-            y1: 1,
-            x2: 0,
-            y2: 0
-        }).elem('stop', {
-            offset: 0,
-            'stop-color': '#99f3f3'
-        }).parent().elem('stop', {
-            offset: 1,
-            'stop-color': '#33d4d8'
-        });
-    });
-    chart.on('draw', function(data) {
-        if (data.type === 'label') {
-            if (data.index === 0) {
-                data.element.attr({
-                    dx: data.element.root().width() / 2,
-                    dy: data.element.root().height() / 2
-                });
-            } else {
-                data.element.remove();
-            }
-        }
-    });
-});
-</script>
 {% endblock %}
