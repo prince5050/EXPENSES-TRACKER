@@ -1,6 +1,7 @@
 from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.http import request, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -43,20 +44,20 @@ def faq(request):
 def update_profile(request):
     if request.method == 'POST':
         # try:
-            User.objects.filter(id=request.user.id).update(first_name=request.POST.get('fname'),
-                                                           last_name=request.POST.get('lname'))
-            profile_obj = Profile.objects.get(user_id=request.user.id)
-            if profile_obj:
-                profile_obj.mobile = request.POST.get('mobile')
-                profile_obj.city = request.POST.get('city')
-                profile_obj.state = request.POST.get('state')
-                profile_obj.country = request.POST.get('country')
-                profile_obj.save()
-            messages.success(request, "Profile Updated Successfully")
-            return redirect('update-profile')
-        # except:
-        #     messages.error(request, "Something Went Wrong")
-        #     return redirect('update-profile')
+        User.objects.filter(id=request.user.id).update(first_name=request.POST.get('fname'),
+                                                       last_name=request.POST.get('lname'))
+        profile_obj = Profile.objects.get(user_id=request.user.id)
+        if profile_obj:
+            profile_obj.mobile = request.POST.get('mobile')
+            profile_obj.city = request.POST.get('city')
+            profile_obj.state = request.POST.get('state')
+            profile_obj.country = request.POST.get('country')
+            profile_obj.save()
+        messages.success(request, "Profile Updated Successfully")
+        return redirect('update-profile')
+    # except:
+    #     messages.error(request, "Something Went Wrong")
+    #     return redirect('update-profile')
     else:
         pro_obj = Profile.objects.get(user_id=request.user.id)
         return render(request, 'dashboard_page/update-profile.html', {"user_obj": pro_obj})
@@ -103,7 +104,27 @@ def profile(request):
 
 
 def add_expense(request):
-    return render(request, 'dashboard_page/add expense.html')
+    if request.method == "POST":
+        print('hiii')
+        user1 = User.objects.get(id=request.user.id)
+        # addmoney_info1 = Expense.objects.filter(user=user1).order_by('-Date')
+        expense_name = request.POST.get("expense_name")
+        Category = request.POST.get("Category")
+        amount = request.POST.get("amount")
+        mode_of_payment = request.POST.get("mode_of_payment")
+        date_of_expense = request.POST.get("date_of_expense")
+        add = Expense(user=user1, expense_name=expense_name, Category=Category, amount=amount,
+                      mode_of_payment=mode_of_payment, date_of_expense=date_of_expense)
+        add.save()
+        # paginator = Paginator(addmoney_info1, 4)
+        # page_number = request.GET.get('page')
+        # page_obj = Paginator.get_page(paginator,page_number)
+        # context = {
+        #     'page_obj' : page_obj
+        #     }
+        return redirect('manage-expenses')
+    else:
+        return render(request, 'dashboard_page/add expense.html')
 
 
 def view_expense(request):
@@ -114,10 +135,57 @@ def edit_expense(request):
     return render(request, 'dashboard_page/edit expense.html')
 
 
+def edit_expense(request):
+    if request.session.has_key('is_logged'):
+        addmoney_info = Addmoney_info.objects.get(id=id)
+        user_id = request.session["user_id"]
+        user1 = User.objects.get(id=user_id)
+        return render(request, 'home/expense_edit.html', {'addmoney_info': addmoney_info})
+    return redirect("/home")
+
+
 def logout1_request(request):
     logout(request)
     return redirect('home')
 
+
+def add_money(request):
+    if request.session.has_key('is_logged'):
+        if request.method == "POST":
+            print('hiii')
+            user_id = request.session["user_id"]
+            user1 = User.objects.get(id=user_id)
+            # addmoney_info1 = Expense.objects.filter(user=user1).order_by('-Date')
+            expense_name = request.POST["expense_name"]
+            Category = request.POST["Category"]
+            amount = request.POST["amount"]
+            mode_of_payment = request.POST["mode_of_payment"]
+            date_of_expense = request.POST["date_of_expense"]
+            add = Expense(user=user1, expense_name=expense_name, Category=Category, amount=amount,
+                          mode_of_payment=mode_of_payment, date_of_expense=date_of_expense)
+            add.save()
+            # paginator = Paginator(addmoney_info1, 4)
+            # page_number = request.GET.get('page')
+            # page_obj = Paginator.get_page(paginator,page_number)
+            # context = {
+            #     'page_obj' : page_obj
+            #     }
+            return render(request, 'dashboard_page/manage expenses.html', context)
+    return redirect('dashboard_page/index')
+
+
+def add_money_update(request, id):
+    if request.session.has_key('is_logged'):
+        if request.method == "POST":
+            add = Expense.objects.get(id=id)
+            add.expense_name = request.POST["expense_name"]
+            add.Category = request.POST["Category"]
+            add.amount = request.POST["amount"]
+            add.mode_of_payment = request.POST["mode_of_payment"]
+            add.date_of_expense = request.POST["date_of_expense"]
+            add.save()
+            return redirect("dashboard_page/manage expenses")
+    return redirect("/dashboard_page/index")
 # def add_expense(request):
 #     if request.method == 'POST':
 #         if User.objects.filter(Expense_name=request.POST.get('expense_name')).first():
