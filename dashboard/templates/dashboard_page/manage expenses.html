@@ -2,7 +2,7 @@
 {% block dashboard_contentBody %}
 {% load static %}
 
-    <div class="app-content content">
+<div class="app-content content">
       <div class="content-wrapper">
         <div class="content-header row">
           <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
@@ -19,32 +19,9 @@
             </div>
           </div>
           <div class="content-header-right col-md-4 col-12 d-none d-md-inline-block">
-            <div class="btn-group float-md-right">
-<!--                <a class="btn-gradient-secondary btn-sm white" href="/add expense/">Add expense</a>-->
-            </div>
+            <div class="btn-group float-md-right"><a class="btn-gradient-secondary btn-sm white" href="/add-expense/">Add expense</a></div>
           </div>
         </div>
-
-<!--           <div class="app-content content">-->
-<!--      <div class="content-wrapper">-->
-<!--        <div class="content-header row">-->
-<!--          <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">-->
-<!--            <h3 class="content-header-title mb-0 d-inline-block">Transactions</h3>-->
-<!--            <div class="row breadcrumbs-top d-inline-block">-->
-<!--              <div class="breadcrumb-wrapper col-12">-->
-<!--                <ol class="breadcrumb">-->
-<!--                  <li class="breadcrumb-item"><a href="index.html">Dashboard</a>-->
-<!--                  </li>-->
-<!--                  <li class="breadcrumb-item active">Transactions-->
-<!--                  </li>-->
-<!--                </ol>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="content-header-right col-md-4 col-12 d-none d-md-inline-block">-->
-<!--            <div class="btn-group float-md-right"><a class="btn-gradient-secondary btn-sm white" href="manage expenses.html">Buy now</a></div>-->
-<!--          </div>-->
-<!--        </div>-->
 
 <!--              <div class="row">-->
 <!--    <div id="recent-transactions" class="col-12">-->
@@ -153,6 +130,9 @@
                                 <th class="border-top-0">Amount</th>
                                 <th class="border-top-0">Mode of Payment</th>
                                 <th class="border-top-0">Date of expense</th>
+                                <th class="border-top-0">View</th>
+                                <th class="border-top-0">Edit</th>
+                                <th class="border-top-0">Delete</th>
                                 <th class="border-top-0"></th>
                             </tr>
                         </thead>
@@ -170,6 +150,9 @@
                                  {%endif%}
                                 </td>
                                 <td class="text-truncate">{{data.date_of_expense}}</td>
+                             <td><a href="/view expense/"><button class="btn btn-success "><i class="ficon icon-eye"></i></button></a></td>
+                                  <td><a href="/edit expense/"> <button class="btn btn-warning "><i class="ficon icon-pencil"></i></button></a></td>
+                                  <td> <button class="btn btn-danger " data-toggle="modal" data-target="#exampleModal"><i class="ficon icon-trash"></button></td>
                         {% endfor %}
                         </tbody>
                     </table>
