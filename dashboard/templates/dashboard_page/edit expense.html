@@ -1,0 +1,64 @@
+{% extends  "dashboard_base.html" %}
+{% block dashboard_contentBody %}
+{% load static %}
+
+    <div class="app-content content">
+      <div class="content-wrapper">
+        <div class="content-header row">
+          <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+            <h3 class="content-header-title mb-0 d-inline-block">Edit expense</h3>
+            <div class="row breadcrumbs-top d-inline-block">
+              <div class="breadcrumb-wrapper col-12">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Edit expense
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+<!--          <div class="content-header-right col-md-4 col-12 d-none d-md-inline-block">-->
+<!--            <div class="btn-group float-md-right"><a class="btn-gradient-secondary btn-sm white" href="manage expenses.html">Buy now</a></div>-->
+<!--          </div>-->
+        </div>
+        <div class="content-body"><div class="row">
+    <div class="col-12 ">
+        <!-- User Profile -->
+        <section class="card">
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="col-12">
+                        <div class="row">
+<!--                            <div class="col-md-2 col-12">-->
+<!--                                <img src="{% static 'dashboard_css/app-assets/images/portrait/small/user.png'%}" class="rounded-circle height-100" alt="Card image" />-->
+<!--                            </div>-->
+                            <div class="col-12">
+                              <form action="/register/" method="POST">
+                                   {% csrf_token %}
+                                    <label><b>Expense name</b></label>
+                                    <input class="input4" type="text" placeholder="" name="Expense name" required>
+                                   <label><b>Category</b></label>
+                                    <input class="input4" type="text" placeholder="" name="Category" required>
+                                    <label><b>Expense Type</b></label>
+                                    <input class="input6" type="email" placeholder="" name="Expense type" required>
+                                    <label><b>Amount</b></label>
+                                    <input class="input7" type="number" placeholder="" name="Amount" required>
+                                    <label><b>Date of Expense</b></label>
+                                    <input class="input5" type="date" placeholder="" name="date of expense" required>
+                                    <div class="col-12 text-right">
+                                        <button type="submit" class="btn-gradient-primary my-1">Update</button>
+                                    </div>
+                              </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+{% endblock %}

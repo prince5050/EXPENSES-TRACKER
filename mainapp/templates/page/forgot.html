@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="banner_title">
-                        <h3>Forgot Password</h3>
+                        <h3>Reset Password</h3>
                     </div>
                 </div>
             </div>
@@ -27,13 +27,30 @@
                         </div>
                     </div>
                     <div class="full paddding_left_15">
+
+                        {% if messages %}
+                                    {% for message in messages %}
+                                    {% if message.tags == 'success'%}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="message_success">
+                                        <strong>{{message}}</strong>
+                                    </div>
+
+                                    {% else %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="message_error">
+                                        <strong>{{message}}</strong>
+
+                                    </div>
+                                    {% endif %}
+                                    {%endfor%}
+                                    {% endif %}
 <!--                        <div class="container" style="margin: 50px; text-align: center;">-->
 <!--                            <div class="center">-->
-                                <form>
+                                <form action="/forgot/" method="POST">
+                                    {% csrf_token %}
                                     <div class="text" style="text-align: left;">
                                     <label><b>Email</b></label>
                                     </div>
-                                    <input class="input3" type= "email" placeholder= "Enter your Email Address">
+                                    <input class="input3" type= "email" placeholder= "Enter your Email Address" name="email">
                                     <br><br>
                                     <button type= "submit" >Submit</button>
                                 </form>

@@ -1,0 +1,33 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+
+</head>
+<style>
+  .p{
+  font-size : 22px;
+  }
+</style>
+<body>
+<p>Dear <b>Expense Tracker Team</b>, </p>
+<p style="margin-top:5px;">{{name}} had visited your website and wants to contact with your team.</p>
+<p>Contact Details mentioned below . </p>
+<ul>
+   <li>Name : {{name}}</li>
+    <li>Mobile : {{mobile}}</li>
+    <li>email : {{email}}</li>
+    <li>subject : {{subject}}</li>
+    <li>Message : {{message}}</li>
+</ul>
+<br>
+<b>
+<p>Sincerely,</p>
+    <p>Expenses Tracker Team - AMTZ</p>
+</b><br>
+<center><p style="font-size:10px;">Please do not reply to this mail. This is system generated mail.</p></center>
+</body>
+</html>

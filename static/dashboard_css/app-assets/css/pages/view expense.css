@@ -3,10 +3,9 @@
                 color:black;
             }
             .input4[type=text],
-            .input5[type=password],
+            .input5[type=date],
             .input6[type=email] ,
-            .input7[type=number],
-            .input8[type=text]
+            .input7[type=number]
             {
                 width: 100%;
                 padding: 12px 20px;
