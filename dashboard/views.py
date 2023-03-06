@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import request, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.template import context
 
@@ -21,6 +21,12 @@ def dashboard(request):
         amt.append(i.amount)
         expenses_type.append(i.Category)
     return render(request, 'dashboard_page/index.html', {'amt': amt, 'expenses_type': expenses_type})
+    # mop = []
+    # amt = []
+    # for i in obj:
+    #     amt.append(i.amount)
+    #     mop.append(i.mode_of_payment)
+    # return render(request, 'dashboard_page/index.html', {'amt': amt, 'mop': mop})
 
 
 #
@@ -133,7 +139,7 @@ def view_expense(request):
 
 def edit_expense(request, id):
     if request.method == "POST":
-        expense_obj = Expense.objects.get(pk=id,user_id=request.user.id)
+        expense_obj = Expense.objects.get(pk=id, user_id=request.user.id)
         if expense_obj:
             expense_obj.Category = request.POST.get('Category')
             expense_obj.expense_name = request.POST.get('expense_name')
@@ -148,7 +154,6 @@ def edit_expense(request, id):
         return render(request, 'dashboard_page/edit-expense.html', {'data': expense})
 
 
-
 def logout1_request(request):
     logout(request)
     return redirect('home')
@@ -159,11 +164,14 @@ def logout1_request(request):
 #     Expense.delete()
 #     messages.success(request, 'Expense removed')
 #     return redirect("manage-expenses")
-    # if request.session.has_key('is_logged'):
+# if request.session.has_key('is_logged'):
 
-    # return redirect("manage-expenses")
+# return redirect("manage-expenses")
 
-def expense_delete(request,id):
-        expense_obj = Expense.objects.get(pk=id, user_id=request.user.id)
-        expense_obj.delete()
-        return redirect("manage-expenses")
+def delete_expense(request, id):
+    expense = Expense.objects.get(user_id=request.user.id, pk=id)
+    if expense:
+        expense.delete()
+        # expense.save()
+        messages.success(request, 'Deleted Successfully')
+        return redirect('manage-expenses')
