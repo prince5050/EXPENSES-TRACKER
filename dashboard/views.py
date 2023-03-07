@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import request, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.template import context
 
@@ -21,6 +21,12 @@ def dashboard(request):
         amt.append(i.amount)
         expenses_type.append(i.Category)
     return render(request, 'dashboard_page/index.html', {'amt': amt, 'expenses_type': expenses_type})
+    # mop = []
+    # amt = []
+    # for i in obj:
+    #     amt.append(i.amount)
+    #     mop.append(i.mode_of_payment)
+    # return render(request, 'dashboard_page/index.html', {'amt': amt, 'mop': mop})
 
 
 #
@@ -113,8 +119,8 @@ def add_expense(request):
         amount = request.POST.get("amount")
         mode_of_payment = request.POST.get("mode_of_payment")
         date_of_expense = request.POST.get("date_of_expense")
-        add = Expense(user=user1, expense_name=expense_name, Category=Category, amount=amount,
-                      mode_of_payment=mode_of_payment, date_of_expense=date_of_expense)
+        add = Expense.objects.create(user=user1, expense_name=expense_name, Category=Category, amount=amount,
+                                     mode_of_payment=mode_of_payment, date_of_expense=date_of_expense)
         add.save()
         # paginator = Paginator(addmoney_info1, 4)
         # page_number = request.GET.get('page')
@@ -128,20 +134,24 @@ def add_expense(request):
 
 
 def view_expense(request):
-    return render(request, 'dashboard_page/view expense.html')
+    return render(request, 'dashboard_page/view-expense.html')
 
 
-def edit_expense(request):
-    return render(request, 'dashboard_page/edit expense.html')
-
-
-def edit_expense(request):
-    if request.session.has_key('is_logged'):
-        addmoney_info = Addmoney_info.objects.get(id=id)
-        user_id = request.session["user_id"]
-        user1 = User.objects.get(id=user_id)
-        return render(request, 'home/expense_edit.html', {'addmoney_info': addmoney_info})
-    return redirect("/home")
+def edit_expense(request, id):
+    if request.method == "POST":
+        expense_obj = Expense.objects.get(pk=id, user_id=request.user.id)
+        if expense_obj:
+            expense_obj.Category = request.POST.get('Category')
+            expense_obj.expense_name = request.POST.get('expense_name')
+            expense_obj.amount = request.POST.get('amount')
+            expense_obj.mode_of_payment = request.POST.get('mode_of_payment')
+            expense_obj.date_of_expense = request.POST.get('date_of_expense')
+            expense_obj.save()
+        messages.success(request, "Expense Updated Successfully")
+        return redirect('manage-expenses')
+    else:
+        expense = Expense.objects.get(pk=id, user_id=request.user)
+        return render(request, 'dashboard_page/edit-expense.html', {'data': expense})
 
 
 def logout1_request(request):
@@ -149,74 +159,19 @@ def logout1_request(request):
     return redirect('home')
 
 
-def add_money(request):
-    if request.session.has_key('is_logged'):
-        if request.method == "POST":
-            print('hiii')
-            user_id = request.session["user_id"]
-            user1 = User.objects.get(id=user_id)
-            # addmoney_info1 = Expense.objects.filter(user=user1).order_by('-Date')
-            expense_name = request.POST["expense_name"]
-            Category = request.POST["Category"]
-            amount = request.POST["amount"]
-            mode_of_payment = request.POST["mode_of_payment"]
-            date_of_expense = request.POST["date_of_expense"]
-            add = Expense(user=user1, expense_name=expense_name, Category=Category, amount=amount,
-                          mode_of_payment=mode_of_payment, date_of_expense=date_of_expense)
-            add.save()
-            # paginator = Paginator(addmoney_info1, 4)
-            # page_number = request.GET.get('page')
-            # page_obj = Paginator.get_page(paginator,page_number)
-            # context = {
-            #     'page_obj' : page_obj
-            #     }
-            return render(request, 'dashboard_page/manage expenses.html', context)
-    return redirect('dashboard_page/index')
+# def expense_delete(request, id):
+#     Expense = User.objects.get(pk=id, id=request.user.id)
+#     Expense.delete()
+#     messages.success(request, 'Expense removed')
+#     return redirect("manage-expenses")
+# if request.session.has_key('is_logged'):
 
+# return redirect("manage-expenses")
 
-def add_money_update(request, id):
-    if request.session.has_key('is_logged'):
-        if request.method == "POST":
-            add = Expense.objects.get(id=id)
-            add.expense_name = request.POST["expense_name"]
-            add.Category = request.POST["Category"]
-            add.amount = request.POST["amount"]
-            add.mode_of_payment = request.POST["mode_of_payment"]
-            add.date_of_expense = request.POST["date_of_expense"]
-            add.save()
-            return redirect("dashboard_page/manage expenses")
-    return redirect("/dashboard_page/index")
-# def add_expense(request):
-#     if request.method == 'POST':
-#         if User.objects.filter(Expense_name=request.POST.get('expense_name')).first():
-#             messages.error(request, 'Expense name is already exists')
-#             return render(request, 'dashboard_page/add expense.html')
-#         else:
-#             user_obj = User.objects.add_expense(Expense_name=request.POST.get('expense name'),
-#                                                 Category=request.POST.get('category'),
-#                                                 Expense_type=request.POST.get('expense type'),
-#                                                 amount=request.POST.get('amount'),
-#                                                 date_of_expense=request.POST.get('date of expense'), mode_of_payment=request.POST.get('mode of payment'))
-#             user_obj.save()
-#             messages.success(request, 'Expense added successfully')
-#             return render(request, 'dashboard_page/add expense.html')
-#     else:
-#         return render(request,'dashboard_page/add expense.html')
-
-
-# try:
-#     expense_name = request.post['expense_name']
-#     if not expense_name:
-#         messages.error(request,'Expense name is required')
-#         return render(request, 'dashboard_page/add_expense.html',context)
-#     Category = request.POST['category']
-#    expense_type = request.post['expense_type']
-#     if not expense_type:
-#         messages.error(request,'Expense type is required')
-#         return render(request, 'dashboard_page/add_expense.html',context)
-
-#
-#
-#
-# except:
-#     return redirect('dashboard_page/manage expenses.html')
+def delete_expense(request, id):
+    expense = Expense.objects.get(user_id=request.user.id, pk=id)
+    if expense:
+        expense.delete()
+        # expense.save()
+        messages.success(request, 'Deleted Successfully')
+        return redirect('manage-expenses')
