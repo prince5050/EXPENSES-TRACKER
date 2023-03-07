@@ -143,3 +143,4 @@ def send_email_message(email_template, subject, to_email, data):
         settings.EMAIL_HOST_USER, to_email)
     email.attach_alternative(message, "text/html")
     email.send(fail_silently=False)
+

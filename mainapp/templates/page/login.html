@@ -30,6 +30,7 @@
                         {% if messages %}
                             {% for message in messages %}
                                     {% if message.tags == 'success'%}
+
                                         <div class="alert alert-success alert-dismissible fade show" role="alert" id="message_success"><strong>{{message}}</strong></div>
 
                                     {% else %}
@@ -38,6 +39,16 @@
                             {%endfor%}
                         {% endif %}
 
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="message_success">
+                                        <strong>{{message}}</strong>
+                                    </div>
+                                    {% else %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="message_error">
+                                        <strong>{{message}}</strong>
+                                    </div>
+                                    {% endif %}
+                                    {%endfor%}
+                                    {% endif %}
 
 
                     </div>

@@ -34,21 +34,18 @@
 <!--                                <img src="{% static 'dashboard_css/app-assets/images/portrait/small/user.png'%}" class="rounded-circle height-100" alt="Card image" />-->
 <!--                            </div>-->
                             <div class="col-12">
-                              <form action="/register/" method="POST">
+                              <form action="/edit-expense/{{data.pk}}" method="POST">
                                    {% csrf_token %}
-                                    <label><b>Expense name</b></label>
-                                    <input class="input4" type="text" placeholder="" name="Expense name" required>
-                                   <label><b>Category</b></label>
-                                    <input class="input4" type="text" placeholder="" name="Category" required>
-                                    <label><b>Expense Type</b></label>
-                                    <input class="input6" type="email" placeholder="" name="Expense type" required>
-                                    <label><b>Amount</b></label>
-                                    <input class="input7" type="number" placeholder="" name="Amount" required>
-                                    <label><b>Date of Expense</b></label>
-                                    <input class="input5" type="date" placeholder="" name="date of expense" required>
-                                    <div class="col-12 text-right">
+
+                                   <label><b>Category</b></label><input class="input4" type="text" placeholder="" value="{{data.Category}}" readonly name="Category">
+                                   <label><b>Expense name</b></label><input class="input4" type="text" placeholder="" value="{{data.expense_name}}" readonly name="expense_name">
+                                   <label><b>Amount</b></label><input class="input7" type="number" placeholder=""  value="{{data.amount}}"  name="amount">
+                                   <label><b>Mode of payment</b></label><input class="input4" type="text" placeholder=""  value="{{data.mode_of_payment}}" name="mode_of_payment">
+                                   <label><b>Date of Expense</b></label><input class="input4" type="text" placeholder=""  value="{{data.date_of_expense|date:'Y-m-d'}}" name="date_of_expense">
+                                   <div class="col-12 text-right">
                                         <button type="submit" class="btn-gradient-primary my-1">Update</button>
                                     </div>
+
                               </form>
 
 
