@@ -146,13 +146,13 @@
                                  {% if data.mode_of_payment == 'Online'%}
                                     <a href="#" class="mb-0 btn-sm btn btn-outline-success round">{{data.mode_of_payment}}</a>
                                  {%else%}
-                         <a href="#" class="mb-0 btn-sm btn btn-outline-warning round">{{data.mode_of_payment}}</a>
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-warning round">{{data.mode_of_payment}}</a>
                                  {%endif%}
                                 </td>
                                 <td class="text-truncate">{{data.date_of_expense}}</td>
                              <td><a href="/view expense/"><button class="btn btn-success "><i class="ficon icon-eye"></i></button></a></td>
                                   <td><a href="/edit expense/"> <button class="btn btn-warning "><i class="ficon icon-pencil"></i></button></a></td>
-                                  <td> <button class="btn btn-danger " data-toggle="modal" data-target="#exampleModal"><i class="ficon icon-trash"></button></td>
+                                  <td> <button class="btn btn-danger " data-toggle="modal" data-target="#exampleModal"><i class="ficon icon-trash"> </i></button></td>
                         {% endfor %}
                         </tbody>
                     </table>

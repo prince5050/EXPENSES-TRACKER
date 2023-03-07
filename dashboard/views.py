@@ -113,8 +113,8 @@ def add_expense(request):
         amount = request.POST.get("amount")
         mode_of_payment = request.POST.get("mode_of_payment")
         date_of_expense = request.POST.get("date_of_expense")
-        add = Expense(user=user1, expense_name=expense_name, Category=Category, amount=amount,
-                      mode_of_payment=mode_of_payment, date_of_expense=date_of_expense)
+        add = Expense.objects.create(user=user1, expense_name=expense_name, Category=Category, amount=amount,
+                                     mode_of_payment=mode_of_payment, date_of_expense=date_of_expense)
         add.save()
         # paginator = Paginator(addmoney_info1, 4)
         # page_number = request.GET.get('page')
