@@ -137,6 +137,10 @@ def view_expense(request):
     return render(request, 'dashboard_page/view-expense.html')
 
 
+def index(request):
+    return render(request, 'dashboard_page/index.html')
+
+
 def edit_expense(request, id):
     if request.method == "POST":
         expense_obj = Expense.objects.get(pk=id, user_id=request.user.id)
