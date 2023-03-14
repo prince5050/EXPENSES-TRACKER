@@ -17,6 +17,7 @@ urlpatterns = [
     path('edit-expense/<int:id>', views.edit_expense, name='edit-expense'),
     path('delete_expense/<int:id>',views.delete_expense, name='delete_expense'),
     path('logout/', views.logout1_request, name='logout1_request'),
+    path('index/', views.index, name='index'),
 
 
 ]
