@@ -145,7 +145,7 @@
                                 <th class="border-top-0">Amount</th>
                                 <th class="border-top-0">Mode of Payment</th>
                                 <th class="border-top-0">Date of expense</th>
-                                <th class="border-top-0">View</th>
+<!--                                <th class="border-top-0">View</th>-->
                                 <th class="border-top-0">Edit</th>
                                 <th class="border-top-0">Delete</th>
                                 <th class="border-top-0"></th>
@@ -166,7 +166,7 @@
                                  {%endif%}
                                 </td>
                                 <td class="text-truncate">{{data.date_of_expense|date}}</td>
-                             <td><a href="/view expense/"><button class="btn btn-success "><i class="ficon icon-eye"></i></button></a></td>
+<!--                             <td><a href="/view expense/"><button class="btn btn-success "><i class="ficon icon-eye"></i></button></a></td>-->
                                   <td><a href="/edit-expense/{{data.pk}}"> <button class="btn btn-warning "><i class="ficon icon-pencil"></i></button></a></td>
                                   <td><a href="/delete_expense/{{data.pk}}"><button class="btn btn-danger "><i class="ficon icon-trash"></i></button></a></td>
                         {% endfor %}
