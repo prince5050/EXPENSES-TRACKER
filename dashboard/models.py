@@ -38,7 +38,7 @@ class Expense(models.Model):
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     expense_name = models.CharField(max_length=120)
     Category = models.CharField(max_length=20, choices=SELECT_CATEGORY_CHOICES, default='Food')
-    # expense_typge = models.CharField(max_length=120)
+    # expense_type = models.CharField(max_length=120)
     amount = models.CharField(max_length=120)
     mode_of_payment = models.CharField(max_length=120)
     date_of_expense = models.DateTimeField(auto_now_add=False)
